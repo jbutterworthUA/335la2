@@ -1,6 +1,7 @@
 /*
-* Authors: Jason Butterworth (jbutterworth) and Dylan Carothers.
-*/
+ * Authors: Jason Butterworth.
+ * Test line.
+ */
 
 public class MyLibrary {
 
