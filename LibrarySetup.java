@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+* Class Purpose: Serve as the intermediary between the client-side MyLibary UI class and those which 
+* control the overall management of each object.
+* Will handle the actual tasks of user requests by routing to appropriate class.
+*/
+
 public class LibrarySetup {
     private MasterList masterList;
     private RatedBookList ratedList;
