@@ -13,6 +13,7 @@ final class Book {
     /*
      * Helper method to get title of the book.
      * Since book is final and title is provided, prevents escaping reference.
+     * @return String. The title of the book, which is immutable.
      */
     public String getTitle() {
         return this.title;
@@ -21,6 +22,7 @@ final class Book {
     /*
      * Helper method to get author of the book.
      * Since book is final and author is provided, prevents escaping reference.
+     * @return String. The author of the book, which is immutable.
      */
     public String getAuthor() {
         return this.author;
