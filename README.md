@@ -8,3 +8,5 @@ I'm assuming that just means we're going to be printing everything for the user 
 getUnreadBooks() requires checking the read status of each BookRead object in the masterList. Our BookRead class does not have a getter method yet for retrieving that status. If we added one, the code that I put down should work, but it looks like we would be creating an antipattern of using getters for each of our instance variables. In the case of doing this with the Book class it was fine because Book is final. In this case, BookRead is not. Something to think about.
 
 Need to figure out how we are accessing the titles/authors of RatedBookList class. (same reason as above).
+
+In rate() method, we will be asking user for title of book they want to rate. That means searching by title. Gave idea of maybe using multiple search helpers in main search() method to clean up code. (see more in comments under rate() method).
