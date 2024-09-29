@@ -143,6 +143,17 @@ public class LibrarySetup {
             // Display books for the user.
             displayBooks(possibleBooks);
 		}
+
+        if (searchMethod.equals("rate")) {
+            System.out.println("Type the rate of the book you are searching for: ");
+			int searchRate = keyboard.nextInt();
+
+            // Retrieve all possible books.
+            ArrayList<BookReview> possibleBooks = searchByRate(searchRate);
+
+            // Display books for the user.
+            displayBooksByRate(possibleBooks);
+        }
 	}
 
     private void displayBooks(ArrayList<BookRead> possibleBooks) {
