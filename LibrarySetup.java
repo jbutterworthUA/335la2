@@ -134,6 +134,7 @@ public class LibrarySetup {
 		// Retrieve all possible unread books using our helper method.
 		ArrayList<BookRead> unreadBooks = getUnreadBooks();
 		
+		// If there are no unread books to suggest from, print a message and exit.
 		if (unreadBooks.size() == 0) {
 			System.out.println("No unread books in your library!");
 			return;
