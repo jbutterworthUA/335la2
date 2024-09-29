@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.io.File;
 
@@ -56,6 +57,14 @@ public class MasterList {
 		} else {
 			System.out.println(currentBook + " already in library.");
 		}
+	}
+		
+	public void sortTitle() {
+		Collections.sort(allBooks, BookRead.createTitleComparator());
+	}
+	
+	public void sortAuthor() {
+		Collections.sort(allBooks, BookRead.createAuthorComparator());
 	}
 
 }
