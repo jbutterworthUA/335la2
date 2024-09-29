@@ -6,7 +6,9 @@ import java.io.File;
 /**
  * Authors: Jason Butterworth (jbutterworth) and Dylan Carothers II (dylanacarothers).
  * Class Purpose: Class which will hold our Master List of all BookRead objects in library, regardless of
- * read status. --Encapsulation info to be added.--
+ * read status.
+ * Encapsulation Notes: No setter methods will ever be called on constructors (no worries of accepting escaping references).
+ * All returned references are to protected data (i.e BookRead objects).
  */
 public class MasterList {
 	private ArrayList<BookRead> allBooks;

@@ -2,7 +2,9 @@ import java.util.Comparator;
 
 /**
  * Authors: Jason Butterworth (jbutterworth) and Dylan Carothers II (dylanacarothers).
- * Class Purpose: Create BookRead object to build off of Book class, adding mutable quality of read status.
+ * Class Purpose: Create BookRead object to build off of Book class, including data about its read status.
+ * Encapsulation Notes: Immutable Book class will be used as an attribute, while primitive type of boolean (also immutable)
+ * dictates the read status. 
  */
 public class BookRead {
 	private Book book;

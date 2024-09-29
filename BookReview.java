@@ -1,6 +1,8 @@
 /**
  * Authors: Jason Butterworth (jbutterworth) and Dylan Carothers II (dylanacarothers).
- * Class Purpose: Create BookReview object to build off of BookRead class, adding mutable quality of user rating.
+ * Class Purpose: Create BookReview object to build off of BookRead class, including data regarding its user rating.
+ * Encapsulation Notes: Class will only return primitive data which cannot be changed,
+ * and objects will never be passed outside references.
  */
 
 public class BookReview {

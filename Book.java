@@ -2,6 +2,8 @@
 /**
  * Authors: Jason Butterworth (jbutterworth) and Dylan Carothers II (dylanacarothers).
  * Class Purpose: Create a Book object that will store immutable qualities of title and author.
+ * Encapsulation Notes: Book class will be final, allowing us to use getter methods without worrying
+ * about mutation.
  */
 
 final class Book {

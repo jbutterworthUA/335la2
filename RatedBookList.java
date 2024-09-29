@@ -2,7 +2,9 @@ import java.util.ArrayList;
 /**
 * Authors: Jason Butterworth (jbutterworth) and Dylan Carothers II (dylanacarothers)
 * Class Purpose: Class which will hold a list of all BookReview objects in library, for any book
-* which the user has previously rated. --Encapsulation info to be added.--
+* which the user has previously rated.
+* Encapsulation Notes: No setter methods will ever be called on constructors (no worries of accepting escaping references).
+* All returned references are to protected data (i.e BookReview objects).
 */
 
 public class RatedBookList {
