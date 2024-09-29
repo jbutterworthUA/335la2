@@ -133,6 +133,12 @@ public class LibrarySetup {
 	public void suggestRead() {
 		// Retrieve all possible unread books using our helper method.
 		ArrayList<BookRead> unreadBooks = getUnreadBooks();
+		
+		if (unreadBooks.size() == 0) {
+			System.out.println("No unread books in your library!");
+			return;
+		}
+		
 		// Shuffle the list of unread books and retrieve Book object at index 0.
 		Collections.shuffle(unreadBooks);
 		Book suggestion = unreadBooks.get(0).getBook();
