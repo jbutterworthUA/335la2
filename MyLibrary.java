@@ -1,5 +1,5 @@
 /*
- * Authors: Jason Butterworth (jbutterworth) and Dylan Carothers (NETID).
+ * Authors: Jason Butterworth (jbutterworth) and Dylan Carothers II (dylanacarothers).
  * Class Purpose: Running a text-based UI allowing user to get or add information
  * to a personal virtual library.
  */
