@@ -50,7 +50,6 @@ public class MyLibrary {
 				System.out.println("addBooks");
 				System.out.println("showCommands");
 				System.out.println("exit");
-
 			}
 		}
 	}
