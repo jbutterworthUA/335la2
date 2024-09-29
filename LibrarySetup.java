@@ -86,9 +86,6 @@ public class LibrarySetup {
 		// Iterate through every book in our masterList and check its status.
 		for (int i = 0; i < masterList.size(); i++) {
 			// If the current book has not been read, add to unread list.
-
-			// *** INCOMPLETE CODE BELOW (ISREAD METHOD DNE YET): DO WE WANT ANOTHER GETTER
-			// FOR BOOKREAD READ STATUS? APPEARS TO BE ANTI-PATTERN. ***
 			if (!masterList.get(i).isRead()) {
 				unreadBooks.add(masterList.get(i));
 			}
