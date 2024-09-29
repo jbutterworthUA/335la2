@@ -22,4 +22,12 @@ public class RatedBookList {
     public void addReviewBook(BookReview myBookReview) {
         allRatedBooks.add(myBookReview);
     }
+    
+    public BookReview get(int index) {
+    	return allRatedBooks.get(index);
+    }
+    
+    public int size() {
+    	return allRatedBooks.size();
+    }
 }
