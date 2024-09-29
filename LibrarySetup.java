@@ -62,7 +62,7 @@ public class LibrarySetup {
 	/*
 	 * Suggest a random unread book from the user's library for them to read.
 	 */
-	public void suggest() {
+	public void suggestRead() {
 		// Retrieve all possible unread books using our helper method.
 		ArrayList<BookRead> unreadBooks = getUnreadBooks();
 		// Shuffle the list of unread books and retrieve Book object at index 0.
