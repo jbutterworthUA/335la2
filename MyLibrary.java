@@ -31,11 +31,11 @@ public class MyLibrary {
 			} else if (input.equals("rate")) {
 				mainLibrary.rate();
 			} else if (input.equals("getBooks")) {
-				mainLibrary.search();
+				mainLibrary.getBooks();
 			} else if (input.equals("suggestRead")) {
-				mainLibrary.search();
+				mainLibrary.suggestRead();
 			} else if (input.equals("addBooks")) {
-				mainLibrary.search();
+				mainLibrary.addBooks();
 			} else if (input.equals("exit")) {
 				continueLoop = false;
 				System.out.println("Goodbye!");
@@ -50,7 +50,6 @@ public class MyLibrary {
 				System.out.println("addBooks");
 				System.out.println("showCommands");
 				System.out.println("exit");
-
 			}
 		}
 	}

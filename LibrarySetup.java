@@ -60,6 +60,7 @@ public class LibrarySetup {
      * (Title/Author/Read Status)
      */
 	public void getBooks() {
+<<<<<<< HEAD
         Scanner keyboard = new Scanner(System.in);
         // Ask user how they would like their books sorted.
         System.out.println("How would you like your books sorted?\n(title, author, read, unread)?:");
@@ -130,6 +131,8 @@ public class LibrarySetup {
 
 
 
+=======
+>>>>>>> 60f4028322d59b8a7b60ca597769abddd257a2d6
 	}
 
     /**
@@ -151,7 +154,7 @@ public class LibrarySetup {
 	/*
 	 * Suggest a random unread book from the user's library for them to read.
 	 */
-	public void suggest() {
+	public void suggestRead() {
 		// Retrieve all possible unread books using our helper method.
 		ArrayList<BookRead> unreadBooks = getUnreadBooks();
 		// Shuffle the list of unread books and retrieve Book object at index 0.
