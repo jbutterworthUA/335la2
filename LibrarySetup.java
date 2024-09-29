@@ -55,9 +55,98 @@ public class LibrarySetup {
 		masterList.addBook(title, author);
 	}
 
+    /**
+     * Retrieve all books in the user's library, organized by user-determined method.
+     * (Title/Author/Read Status)
+     */
 	public void getBooks() {
+        Scanner keyboard = new Scanner(System.in);
+        // Ask user how they would like their books sorted.
+        System.out.println("How would you like your books sorted?\n(title, author, read, unread)?:");
+        String input = keyboard.next();
+        String sortMethod = input.toLowerCase();
+        ArrayList<String> validSortMethods = new ArrayList<>();
+        validSortMethods.add("title");
+        validSortMethods.add("author");
+        validSortMethods.add("read");
+        validSortMethods.add("unread");
+        while (!validSortMethods.contains(sortMethod)) {
+            System.out.println("Please enter a valid sorting method (title, author, read, unread): ");
+            input = keyboard.next();
+            sortMethod = input.toLowerCase();
+        } 
+        // Get all books sorted by title.
+        if (sortMethod.equals("title")) {
+            ArrayList<BookRead> sortedBooks = sortByTitle();
+            // Display each book to the user.
+            System.out.println("Here are your library books sorted by title: ");
+            for (int i = 0; i < sortedBooks.size(); i++) {
+                String currentTitle = sortedBooks.get(i).getBook().getTitle();
+                String currentAuthor = sortedBooks.get(i).getBook().getAuthor();
+                System.out.println(currentTitle + ", by " + currentAuthor);
+            }
+        }
+
+        // Get all books sorted by author.
+        if (sortMethod.equals("author")) {
+            ArrayList<BookRead> sortedBooks = sortByAuthor();
+            // Display each book to the user.
+            System.out.println("Here are your library books sorted by author: ");
+            for (int i = 0; i < sortedBooks.size(); i++) {
+                String currentTitle = sortedBooks.get(i).getBook().getTitle();
+                String currentAuthor = sortedBooks.get(i).getBook().getAuthor();
+                System.out.println(currentTitle + ", by " + currentAuthor);
+            }
+        }
+
+        // Get all books that have been read. (Sorted by title.)
+        if (sortMethod.equals("title")) {
+            ArrayList<BookRead> sortedBooks = sortByTitle();
+            // Display each book to the user.
+            System.out.println("Here are your read library books sorted by title: ");
+            for (int i = 0; i < sortedBooks.size(); i++) {
+                if (sortedBooks.get(i).isRead()) {
+                    String currentTitle = sortedBooks.get(i).getBook().getTitle();
+                    String currentAuthor = sortedBooks.get(i).getBook().getAuthor();
+                    System.out.println(currentTitle + ", by " + currentAuthor);
+                } 
+            }
+        }
+
+        // Get all books that have not been read (Sorted by title.)
+        if (sortMethod.equals("title")) {
+            ArrayList<BookRead> sortedBooks = sortByTitle();
+            // Display each book to the user.
+            System.out.println("Here are your unread library books sorted by title: ");
+            for (int i = 0; i < sortedBooks.size(); i++) {
+                if (!sortedBooks.get(i).isRead()) {
+                    String currentTitle = sortedBooks.get(i).getBook().getTitle();
+                    String currentAuthor = sortedBooks.get(i).getBook().getAuthor();
+                    System.out.println(currentTitle + ", by " + currentAuthor);
+                } 
+            }
+        }
+
+
+
 
 	}
+
+    /**
+     * Helper method to retrieve list of all books in masterList, sorted by title.
+     * @return ArrayList of BookRead objects, sorted alphabetically by title.
+     */
+    private ArrayList<BookRead> sortByTitle() {
+
+    }
+
+    /**
+     * Helper method to retrieve list of all books in masterList, sorted by author.
+     * @return ArrayList of BookRead objects, sorted alphabetically by author.
+     */
+    private ArrayList<BookRead> sortByAuthor() {
+
+    }
 
 	/*
 	 * Suggest a random unread book from the user's library for them to read.
