@@ -1,0 +1,48 @@
+Authors: Jason Butterworth (jbutterworth) and Dylan Carothers II (dylanacarothers)
+
+--------------------------------
+
+Included Classes: 
+- Book.java
+- BookRead.java
+- MasterList.java
+- BookReview.java
+- RatedBookList.java
+
+The above classes were included in the order as stated above to allow us to incrementally build off
+of pre-existing objects to expand the breadth of our included data and its subsequent storage.
+
+--------------------------------
+
+Included Interfaces: 
+- Comparator Interface
+
+The above interface was used so that we would be able to have multiple comparator objects to be used on
+the same type of object in our code. This allowed us to sort the same object (BookRead) in multiple ways
+(by title or by author).
+
+--------------------------------
+
+Included Library Classes:
+- ArrayList
+    - Collections.sort
+    - Collections.shuffle
+
+We chose to use ArrayList as our primary structure for storing all data in our program.
+Doing so allowed us to run useful actions through the Collections framework, such as shuffling our library
+to suggest a random book, or helping us sort books in different orders.
+
+--------------------------------
+
+Included Data Structures:
+- ArrayList
+
+Once again, we chose to use ArrayLists as our method of storing library data and accessing them across classes.
+
+--------------------------------
+
+Included Design Patterns:
+- Strategy
+
+Utilized strategy pattern by implementing a Comparator in our MasterList class. This allowed us to invoke multiple compare methods
+on the same type of data.
