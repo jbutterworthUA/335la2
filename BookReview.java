@@ -23,8 +23,13 @@ public class BookReview {
     public void setRate(int myRate) {
         this.rate = myRate;
     }
+
+    public int getRate() {
+        return this.rate;
+    }
     
     public BookRead getBook() {
     	return bookRead;
     }
+
 }

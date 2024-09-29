@@ -101,8 +101,6 @@ public class LibrarySetup {
 		// If looking for title/author, search master list.
 		// If looking for rate, search ratedList.
 
-		// List of potential books the user is looking for.
-		ArrayList<Book> possibleBooks = new ArrayList<>();
 
 		// Ask user how they want to search for the book.
 		Scanner keyboard = new Scanner(System.in);
@@ -119,20 +117,18 @@ public class LibrarySetup {
 			searchMethod = answer.toLowerCase();
 		}
 
-		// If we are searching by title, we will iterate through masterList.
+		// If we are searching by title, call searchByTitle helper method.
 		if (searchMethod.equals("title")) {
+
 			// First, ask for the title of the book to search for.
 			System.out.println("Type the title of the book you are searching for: ");
 			String searchTitle = keyboard.nextLine();
 
-			for (int i = 0; i < masterList.size(); i++) {
-				Book currentBook = masterList.get(i).getBook();
+            // Retrieve all possible books.
+            ArrayList<BookRead> possibleBooks = searchByTitle(searchTitle);
 
-				// If the titles match, add it to the list of possible books.
-				if (currentBook.getTitle().equals(searchTitle)) {
-					possibleBooks.add(currentBook);
-				}
-			}
+            // Display books for the user.
+            displayBooks(possibleBooks);
 		}
 
 		// If we are searching by author, we will iterate through masterList.
@@ -141,50 +137,105 @@ public class LibrarySetup {
 			System.out.println("Type the author of the book you are searching for: ");
 			String searchAuthor = keyboard.nextLine();
 
-			for (int i = 0; i < masterList.size(); i++) {
-				Book currentBook = masterList.get(i).getBook();
+            // Retrieve all possible books.
+            ArrayList<BookRead> possibleBooks = searchByAuthor(searchAuthor);
 
-				// If the titles match, add it to the list of possible books.
-				if (currentBook.getAuthor().equals(searchAuthor)) {
-					possibleBooks.add(currentBook);
-				}
-			}
+            // Display books for the user.
+            displayBooks(possibleBooks);
 		}
+	}
 
-		// ***START OF INCOMPLETE CODE*** //
-		// If we are searching by rate, we will iterate through ratedList.
-		if (searchMethod.equals("title")) {
-			// First, ask for the rate of the book to search for.
-			System.out.println("Type the rate (1 - 5) of the book you are searching for: ");
-			int searchRate = keyboard.nextInt();
-
-			// *** NEED TO FIGURE OUT HOW WE ARE ACCESSING RATEDLIST'S TITLES/AUTHORS. ***
-			// //
-			for (int i = 0; i < ratedList.size(); i++) {
-				Book currentBook = ratedList.get(i).getBook().getBook();
-
-				// If the titles match, add it to the list of possible books.
-				if (currentBook.getTitle().equals(searchTitle)) {
-					possibleBooks.add(currentBook);
-				}
-			}
-		}
-		// ***END OF INCOMPLETE CODE*** //
-
-		// Display all books which the user may have been searching for.
+    private void displayBooks(ArrayList<BookRead> possibleBooks) {
+        // Display all books which the user may have been searching for.
 		// If there are no possible books, display alternate message.
 		if (possibleBooks.size() == 0) {
 			System.out.println("No books matching your search");
 		} else {
 			System.out.println("List of books matching your search: ");
 			for (int i = 0; i < possibleBooks.size(); i++) {
-				String title = possibleBooks.get(i).getTitle();
-				String author = possibleBooks.get(i).getAuthor();
+				String title = possibleBooks.get(i).getBook().getTitle();
+				String author = possibleBooks.get(i).getBook().getAuthor();
 
 				System.out.println(title + ", by " + author + ".");
 			}
 		}
-	}
+    }
+    
+    private void displayBooksByRate(ArrayList<BookReview> possibleBooks) {
+        // Display all books which the user may have been searching for.
+		// If there are no possible books, display alternate message.
+		if (possibleBooks.size() == 0) {
+			System.out.println("No books matching your search");
+		} else {
+			System.out.println("List of books matching your search: ");
+			for (int i = 0; i < possibleBooks.size(); i++) {
+				String title = possibleBooks.get(i).getBook().getBook().getTitle();
+				String author = possibleBooks.get(i).getBook().getBook().getAuthor();
+
+				System.out.println(title + ", by " + author + ".");
+			}
+		}
+    }
+
+    /**
+     * Helper method to retrieve all books which have the same title the user has inputted.
+     * @param searchTitle
+     * @return ArrayList of all possible books the user could be searching for.
+     */
+    private ArrayList<BookRead> searchByTitle(String searchTitle) {
+        // Create list to store all possible books.
+        ArrayList<BookRead> possibleBooks = new ArrayList<>();
+
+        // Search every book in masterList, checking if the title matches our searchTitle.
+        for (int i = 0; i < masterList.size(); i++) {
+            String currentTitle = masterList.get(i).getBook().getTitle();
+            // If the title of the current book matches, add it to possible books.
+            if (currentTitle.equals(searchTitle)) {
+                possibleBooks.add(masterList.get(i));
+            }
+        }
+        return possibleBooks;
+    }
+
+    /**
+     * Helper method to retrieve all books which have the same author the user has inputted.
+     * @param searchAuthor
+     * @return ArrayList of all possible books the user could be searching for.
+     */
+    private ArrayList<BookRead> searchByAuthor(String searchAuthor) {
+        // Create list to store all possible books.
+        ArrayList<BookRead> possibleBooks = new ArrayList<>();
+
+        // Search every book in masterList, checking if the title matches our searchTitle.
+        for (int i = 0; i < masterList.size(); i++) {
+            String currentAuthor = masterList.get(i).getBook().getAuthor();
+            // If the title of the current book matches, add it to possible books.
+            if (currentAuthor.equals(searchAuthor)) {
+                possibleBooks.add(masterList.get(i));
+            }
+        }
+        return possibleBooks;
+    }
+
+    /**
+     * Helper method to retrieve all books which have the same rate the user has inputted.
+     * @param searchRate
+     * @return ArrayList of all possible books the user could be searching for.
+     */
+    private ArrayList<BookReview> searchByRate(int searchRate) {
+        // Create list to store all possible books.
+        ArrayList<BookReview> possibleBooks = new ArrayList<>();
+
+        // Search every book in masterList, checking if the title matches our searchTitle.
+        for (int i = 0; i < ratedList.size(); i++) {
+            int currentRate = ratedList.get(i).getRate();
+            // If the title of the current book matches, add it to possible books.
+            if (currentRate == searchRate) {
+                possibleBooks.add(ratedList.get(i));
+            }
+        }
+        return possibleBooks;
+    }
 
 	/*
 	 * Helper method to determine if a user has given a valid method to search for a
@@ -207,18 +258,74 @@ public class LibrarySetup {
 		return false;
 	}
 
+    /**
+     * Ask the user for the book they would like to rate, then update or create new rating accordingly.
+     */
 	public void rate() {
-		// First, check if book is in ratedList to update the rate.
-		// If not, find book in masterList and create a new object in ratedList with its
-		// info.
-		// Then add rate.
-
 		// Ask user which book they would like to rate.
-		// Could potentially use a searchByTitle() method here, meaning in search() we
-		// could just call
-		// helpers searchByTitle() searchByAuthor() searchByRate()?
-		// Could help make code look more organized.
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Type the title of the book you would like to rate: ");
+        String searchTitle = keyboard.nextLine();
+        System.out.println("Type the author of the book you would like to rate: ");
+        String searchAuthor = keyboard.nextLine();
+
+        // Integer to keep track of if we have completed the rating process.
+        int found = 0;
+
+        // Check if the book we are searching for is already in ratedList for us to update.
+        for (int i = 0; i < ratedList.size(); i++) {
+            String currentTitle = ratedList.get(i).getBook().getBook().getTitle();
+            String currentAuthor = ratedList.get(i).getBook().getBook().getAuthor();
+            // If the book is already in ratedList, get the new rating and update it.
+            if (currentTitle.equals(searchTitle) && currentAuthor.equals(searchAuthor)) {
+                // Mark that we have found the book.
+                found = 1;
+                int newRate = getNewRate();
+                ratedList.get(i).setRate(newRate);
+                System.out.println("Rate has been updated.");
+                return;
+            }
+        }
+
+        // If we did not find the book in ratedList, we will search masterList and add it to ratedList.
+        if (found == 0) {
+            for (int i = 0; i < masterList.size(); i++) {
+                BookRead currentBookRead = masterList.get(i);
+                String currentTitle = masterList.get(i).getBook().getTitle();
+                String currentAuthor = masterList.get(i).getBook().getAuthor();
+
+                // When we find the book in masterList, we will need to create BookReview object and add to ratedList.
+                if (currentTitle.equals(searchTitle) && currentAuthor.equals(searchAuthor)) {
+                    // Mark that we have found the book.
+                    found = 1;
+                    int newRate = getNewRate();
+                    BookReview newReview = new BookReview(currentBookRead, newRate);
+                    ratedList.addReviewBook(newReview);
+                    System.out.println("Rate has been updated.");
+                    return;
+                }
+            }
+        }
+
+        // If we reach this point, user did not enter a valid book in the library.
+        System.out.println("The book you wish to update was not located in your library.");
 	}
+
+    /**
+     * Helper method to prompt and retrieve an updated book ranking from the user.
+     * @return the new rate of the user's book.
+     */
+    private int getNewRate() {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("What would you like the rating of the book to be? (1 - 5): ");
+        int newRate = keyboard.nextInt();
+        while (newRate < 1 || newRate > 5) {
+            System.out.println("Please enter a valid book rating (1 - 5): ");
+            newRate = keyboard.nextInt();
+        }
+        return newRate;
+
+    }
 
 	public void setToRead() {
 		Scanner keyboard = new Scanner(System.in);
