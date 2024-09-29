@@ -1,5 +1,9 @@
 import java.util.Comparator;
 
+/**
+ * Authors: Jason Butterworth (jbutterworth) and Dylan Carothers II (dylanacarothers).
+ * Class Purpose: Create BookRead object to build off of Book class, adding mutable quality of read status.
+ */
 public class BookRead {
 	private Book book;
 	private boolean isRead;

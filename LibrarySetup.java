@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.Collections;
 
 /*
+ * Authors: Jason Butterworth (jbutterworth) and Dylan Carothers II (dylanacarothers)
  * Class Purpose: Serve as the intermediary between the client-side MyLibary UI
  * class and those which control the overall management of each object. Will
  * handle the actual tasks of user requests by routing to appropriate class.
@@ -13,11 +14,18 @@ public class LibrarySetup {
 	private MasterList masterList;
 	private RatedBookList ratedList;
 
+    /**
+     * Constructor for the LibrarySetup class.
+     * Will initialize new masterList and ratedList objects to store books.
+     */
 	public LibrarySetup() {
 		masterList = new MasterList();
 		ratedList = new RatedBookList();
 	}
 
+    /**
+     * Given a txt file from the user, add all books within that file to the masterList.
+     */
 	public void addBooks() {
 		// Prompt user for name of text file.
 		Scanner keyboard = new Scanner(System.in);
@@ -45,6 +53,9 @@ public class LibrarySetup {
 		}
 	}
 
+    /**
+     * Given a title and author from the user, add a new book to the masterList.
+     */
 	public void addBook() {
 		// Ask user for appropriate info needed for book.
 		Scanner keyboard = new Scanner(System.in);
@@ -60,7 +71,6 @@ public class LibrarySetup {
      * (Title/Author/Read Status)
      */
 	public void getBooks() {
-<<<<<<< HEAD
         Scanner keyboard = new Scanner(System.in);
         // Ask user how they would like their books sorted.
         System.out.println("How would you like your books sorted?\n(title, author, read, unread)?:");
@@ -127,12 +137,6 @@ public class LibrarySetup {
                 } 
             }
         }
-
-
-
-
-=======
->>>>>>> 60f4028322d59b8a7b60ca597769abddd257a2d6
 	}
 
     /**
@@ -170,7 +174,6 @@ public class LibrarySetup {
 
 	/*
 	 * Helper method to retrieve all books which have not been read.
-	 * 
 	 * @return ArrayList<BookRead>. Collection of all books with an unread status.
 	 */
 	private ArrayList<BookRead> getUnreadBooks() {
@@ -185,12 +188,10 @@ public class LibrarySetup {
 		return unreadBooks;
 	}
 
+    /**
+     * Search for specific book(s) using a method determined by the user.
+     */
 	public void search() {
-		// Once we have search method, get the info. (title, author).
-		// If looking for title/author, search master list.
-		// If looking for rate, search ratedList.
-
-
 		// Ask user how they want to search for the book.
 		Scanner keyboard = new Scanner(System.in);
 		System.out.println("How would you like to search for the book?");
@@ -198,8 +199,7 @@ public class LibrarySetup {
 		String answer = keyboard.nextLine();
 		String searchMethod = answer.toLowerCase();
 
-		// If user did not enter a valid search method, continue prompting until they do
-		// so.
+		// If user did not enter a valid search method, continue prompting until they do so.
 		while (!isValid(searchMethod)) {
 			System.out.println("Please input a valid search method (title, author, rate): ");
 			answer = keyboard.nextLine();
@@ -245,6 +245,10 @@ public class LibrarySetup {
         }
 	}
 
+    /**
+     * Helper method to display a list of books to the user.
+     * @param possibleBooks. ArrayList of BookRead objects we wish to display.
+     */
     private void displayBooks(ArrayList<BookRead> possibleBooks) {
         // Display all books which the user may have been searching for.
 		// If there are no possible books, display alternate message.
@@ -261,6 +265,10 @@ public class LibrarySetup {
 		}
     }
     
+    /**
+     * Helper method to display a list of books to the user.
+     * @param possibleBooks. ArrayList of BookReview objects we wish to display.
+     */
     private void displayBooksByRate(ArrayList<BookReview> possibleBooks) {
         // Display all books which the user may have been searching for.
 		// If there are no possible books, display alternate message.
@@ -359,7 +367,7 @@ public class LibrarySetup {
 	}
 
     /**
-     * Ask the user for the book they would like to rate, then update or create new rating accordingly.
+     * Set/update rating of a book in the user's library.
      */
 	public void rate() {
 		// Ask user which book they would like to rate.
@@ -424,9 +432,11 @@ public class LibrarySetup {
             newRate = keyboard.nextInt();
         }
         return newRate;
-
     }
 
+    /**
+     * Set the status of a user's book to read.
+     */
 	public void setToRead() {
 		Scanner keyboard = new Scanner(System.in);
 		// Ask the user which book they want to mark as read.
@@ -446,6 +456,5 @@ public class LibrarySetup {
 				masterList.get(i).setRead();
 			}
 		}
-
 	}
 }

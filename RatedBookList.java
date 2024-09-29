@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 /**
-* Class Purpose: Create a list of all existing books which have been
-* given a rating by the user.
+* Authors: Jason Butterworth (jbutterworth) and Dylan Carothers II (dylanacarothers)
+* Class Purpose: Class which will hold a list of all BookReview objects in library, for any book
+* which the user has previously rated. --Encapsulation info to be added.--
 */
 
 public class RatedBookList {
@@ -23,10 +24,19 @@ public class RatedBookList {
         allRatedBooks.add(myBookReview);
     }
     
+    /**
+     * Retrieve the BookReview object at a specific index from the rated book list.
+     * @param index
+     * @return BookReview object.
+     */
     public BookReview get(int index) {
     	return allRatedBooks.get(index);
     }
     
+    /**
+     * Retrieve the current size of the rated book list.
+     * @return int of current ArrayList size.
+     */
     public int size() {
     	return allRatedBooks.size();
     }

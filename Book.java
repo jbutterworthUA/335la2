@@ -1,7 +1,18 @@
+
+/**
+ * Authors: Jason Butterworth (jbutterworth) and Dylan Carothers II (dylanacarothers).
+ * Class Purpose: Create a Book object that will store immutable qualities of title and author.
+ */
+
 final class Book {
 	private String title;
 	private String author;
 
+	/*
+	 * Constructor for the Book class.
+	 * @param title. String representing the title of the book.
+	 * @param author. String representing the author of the book.
+	 */
 	public Book(String title, String author) {
 		if (title == null || author == null) {
 			throw new IllegalArgumentException();
@@ -28,9 +39,5 @@ final class Book {
 	 */
 	public String getAuthor() {
 		return this.author;
-	}
-	
-	public String toString() {
-		return "Title: " + title + " Author: " + author;
 	}
 }

@@ -3,7 +3,8 @@ import java.util.Scanner;
 import java.io.File;
 
 /**
- * Class which will hold our Master List of all books in library, regardless of
+ * Authors: Jason Butterworth (jbutterworth) and Dylan Carothers II (dylanacarothers).
+ * Class Purpose: Class which will hold our Master List of all BookRead objects in library, regardless of
  * read status. --Encapsulation info to be added.--
  */
 public class MasterList {
