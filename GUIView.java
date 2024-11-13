@@ -5,8 +5,8 @@ import javax.swing.*;
 public class GUIView extends JFrame {
     private static LibrarySetup mainLibrary = new LibrarySetup();
 	private JPanel panel;
-	private JLabel statusLabel;
-	private JLabel countLabel;
+	private JTextField textField;
+	private JTextArea textArea;
 	
 	public GUIView() {
 		setUp();
@@ -17,37 +17,18 @@ public class GUIView extends JFrame {
 		this.setSize(400,400);
 		
 		//setting up the status label
-		statusLabel = new JLabel("",JLabel.CENTER);
-		statusLabel.setSize(350,100);
-		this.add(statusLabel);
+		textField = new JTextField("",JTextField.CENTER);
+		textField.setSize(350,100);
+		this.add(textField);
 		
 		//setting up the count label
-		countLabel = new JLabel("",JLabel.LEFT);
-		countLabel.setSize(350,100);
-		this.add(countLabel);
+		textArea = new JTextArea(10, 10);
+		textArea.setSize(350,100);
+		this.add(textArea);
 		
 		//adding the panel
 		panel = new JPanel();
 		this.add(panel);
-
-        JButton searchButton = new JButton("Search");
-        JButton addBookButton = new JButton("Add Book");
-        JButton setBookButton = new JButton("Set Book to Read");
-        JButton rateButton = new JButton("Rate Book");
-        JButton getBooksButton = new JButton("Get Books");
-        JButton suggestButton = new JButton("Suggest Read");
-        JButton addBooksButton = new JButton("Add Books");
-        JButton exitButton = new JButton("Exit");
-
-        // Add all buttons to panel.
-        panel.add(searchButton);
-        panel.add(addBookButton);
-        panel.add(setBookButton);
-        panel.add(rateButton);
-        panel.add(getBooksButton);
-        panel.add(suggestButton);
-        panel.add(addBooksButton);
-        panel.add(exitButton);
 		
 		//adding a window listener for closing the app
 		this.addWindowListener(new WindowAdapter() {
@@ -58,11 +39,40 @@ public class GUIView extends JFrame {
 	}
 	
 	private void start() {
-		//setting up the search button
-		JButton searchButton = new JButton("Search");
-		searchButton.setActionCommand("toggle");
-		searchButton.addActionListener(new ButtonClickListener());
-		panel.add(searchButton);
+
+		//setting up the required buttons.
+        JButton searchButton = new JButton("Search");
+        searchButton.setActionCommand("search");
+        searchButton.addActionListener(new ButtonClickListener());
+        panel.add(searchButton);
+        JButton addBookButton = new JButton("Add Book");
+        addBookButton.setActionCommand("addBook");
+        addBookButton.addActionListener(new ButtonClickListener());
+        panel.add(addBookButton);
+        JButton setBookButton = new JButton("Set Book to Read");
+        setBookButton.setActionCommand("set");
+        setBookButton.addActionListener(new ButtonClickListener());
+        panel.add(setBookButton);
+        JButton rateButton = new JButton("Rate Book");
+        rateButton.setActionCommand("rate");
+        rateButton.addActionListener(new ButtonClickListener());
+        panel.add(rateButton);
+        JButton getBooksButton = new JButton("Get Books");
+        getBooksButton.setActionCommand("get");
+        getBooksButton.addActionListener(new ButtonClickListener());
+        panel.add(getBooksButton);
+        JButton suggestButton = new JButton("Suggest Read");
+        suggestButton.setActionCommand("suggest");
+        suggestButton.addActionListener(new ButtonClickListener());
+        panel.add(suggestButton);
+        JButton addBooksButton = new JButton("Add Books");
+        addBooksButton.setActionCommand("addBooks");
+        addBooksButton.addActionListener(new ButtonClickListener());
+        panel.add(addBooksButton);
+        JButton exitButton = new JButton("Exit");
+        exitButton.setActionCommand("exit");
+        exitButton.addActionListener(new ButtonClickListener());
+        panel.add(exitButton);
         
 	}
 	
@@ -79,14 +89,7 @@ public class GUIView extends JFrame {
 				model.toggleCount();
 				updateCount(model.getCount() == -1);
 			}
-		}
-		
-		private void updateCount(boolean isOff) {
-			if(isOff) {
-				countLabel.setText("");
-			} else {
-				countLabel.setText("count: " + model.getCount());
-			}
+
 		}
 	}
 	
