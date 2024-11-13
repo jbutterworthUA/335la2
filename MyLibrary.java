@@ -51,6 +51,8 @@ public class MyLibrary {
 				System.out.println("showCommands");
 				System.out.println("exit");
 			}
+			System.out.println("----------------------------------");
+			System.out.println("Enter next command or type 'showCommands' to print a list of possible commands.");
 		}
 	}
 
