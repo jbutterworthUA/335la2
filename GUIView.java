@@ -73,7 +73,7 @@ public class GUIView extends JFrame {
         exitButton.setActionCommand("exit");
         exitButton.addActionListener(new ButtonClickListener());
         panel.add(exitButton);
-        
+
 	}
 	
 	//Listener for the two buttons
@@ -81,14 +81,33 @@ public class GUIView extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			String command = e.getActionCommand();
 			
-			if(command.equals("Search")) {
+			if(command.equals("search")) {
 				mainLibrary.search();
 				statusLabel.setText(model.getStatus().toString());
 				updateCount(model.getCount() == -1);
-			} else if(command.equals("count")) {
+			} else if(command.equals("addBook")) {
+				model.toggleCount();
+				updateCount(model.getCount() == -1);
+			} else if(command.equals("set")) {
+				model.toggleCount();
+				updateCount(model.getCount() == -1);
+			} else if(command.equals("rate")) {
+				model.toggleCount();
+				updateCount(model.getCount() == -1);
+			} else if(command.equals("get")) {
+				model.toggleCount();
+				updateCount(model.getCount() == -1);
+			} else if(command.equals("suggest")) {
+				model.toggleCount();
+				updateCount(model.getCount() == -1);
+			} else if(command.equals("addBooks")) {
+				model.toggleCount();
+				updateCount(model.getCount() == -1);
+			} else if(command.equals("exit")) {
 				model.toggleCount();
 				updateCount(model.getCount() == -1);
 			}
+            
 
 		}
 	}

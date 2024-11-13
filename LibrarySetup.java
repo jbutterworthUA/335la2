@@ -56,13 +56,7 @@ public class LibrarySetup {
     /**
      * Given a title and author from the user, add a new book to the masterList.
      */
-	public void addBook() {
-		// Ask user for appropriate info needed for book.
-		Scanner keyboard = new Scanner(System.in);
-		System.out.println("Enter the title of the book to be added: ");
-		String title = keyboard.nextLine();
-		System.out.println("Enter the author of the book to be added: ");
-		String author = keyboard.nextLine();
+	public void addBook(String title, String author) {
 		masterList.addBook(title, author);
 	}
 
@@ -70,22 +64,7 @@ public class LibrarySetup {
      * Retrieve all books in the user's library, organized by user-determined method.
      * (Title/Author/Read Status)
      */
-	public void getBooks() {
-        Scanner keyboard = new Scanner(System.in);
-        // Ask user how they would like their books sorted.
-        System.out.println("How would you like your books sorted?\n(title, author, read, unread)?:");
-        String input = keyboard.next();
-        String sortMethod = input.toLowerCase();
-        ArrayList<String> validSortMethods = new ArrayList<>();
-        validSortMethods.add("title");
-        validSortMethods.add("author");
-        validSortMethods.add("read");
-        validSortMethods.add("unread");
-        while (!validSortMethods.contains(sortMethod)) {
-            System.out.println("Please enter a valid sorting method (title, author, read, unread): ");
-            input = keyboard.next();
-            sortMethod = input.toLowerCase();
-        } 
+	public void getBooks(String sortMethod) {
         // Get all books sorted by title.
         if (sortMethod.equals("title")) {
             masterList.sortTitle();
@@ -141,25 +120,20 @@ public class LibrarySetup {
 	/*
 	 * Suggest a random unread book from the user's library for them to read.
 	 */
-	public void suggestRead() {
+	public Book suggestRead() {
 		// Retrieve all possible unread books using our helper method.
 		ArrayList<BookRead> unreadBooks = getUnreadBooks();
 		
 		// If there are no unread books to suggest from, print a message and exit.
 		if (unreadBooks.size() == 0) {
-			System.out.println("No unread books in your library!");
-			return;
+			return null;
 		}
 		
 		// Shuffle the list of unread books and retrieve Book object at index 0.
 		Collections.shuffle(unreadBooks);
 		Book suggestion = unreadBooks.get(0).getBook();
 
-		String title = suggestion.getTitle();
-		String author = suggestion.getAuthor();
-
-		// Display the suggestion message for the user.
-		System.out.println("You should try reading " + title + ", by " + author + ".");
+        return suggestion;
 	}
 
 	/*
