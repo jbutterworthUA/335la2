@@ -134,8 +134,6 @@ public class LibrarySetup {
             ArrayList<BookRead> possibleBooks = searchByTitle(searchKeyword);
 
             return possibleBooks;
-            // Display books for the user.
-            displayBooks(possibleBooks);
 		}
 
 		// If we are searching by author, we will iterate through masterList.
@@ -143,60 +141,18 @@ public class LibrarySetup {
             // Retrieve all possible books.
             ArrayList<BookRead> possibleBooks = searchByAuthor(searchKeyword);
             return possibleBooks;
-            // Display books for the user.
-            displayBooks(possibleBooks);
 		}
 
         if (searchMethod.equals("rate")) {
             ArrayList<BookReview> possibleBooks = searchByRate(searchRate);
-            return possibleBooks;
-            // Display books for the user.
-            displayBooksByRate(possibleBooks);
+            
         }
         return null;
 	}
     public ArrayList<BookReview> getPossibleRatedBooks(ArrayList<BookReview> possibleBooks) {
         return possibleBooks;
     }
-    /**
-     * Helper method to display a list of books to the user.
-     * @param possibleBooks. ArrayList of BookRead objects we wish to display.
-     */
-    private void displayBooks(ArrayList<BookRead> possibleBooks) {
-        // Display all books which the user may have been searching for.
-		// If there are no possible books, display alternate message.
-		if (possibleBooks.size() == 0) {
-			System.out.println("No books matching your search");
-		} else {
-			System.out.println("List of books matching your search: ");
-			for (int i = 0; i < possibleBooks.size(); i++) {
-				String title = possibleBooks.get(i).getBook().getTitle();
-				String author = possibleBooks.get(i).getBook().getAuthor();
-
-				System.out.println(title + ", by " + author + ".");
-			}
-		}
-    }
     
-    /**
-     * Helper method to display a list of books to the user.
-     * @param possibleBooks. ArrayList of BookReview objects we wish to display.
-     */
-    private void displayBooksByRate(ArrayList<BookReview> possibleBooks) {
-        // Display all books which the user may have been searching for.
-		// If there are no possible books, display alternate message.
-		if (possibleBooks.size() == 0) {
-			System.out.println("No books matching your search");
-		} else {
-			System.out.println("List of books matching your search: ");
-			for (int i = 0; i < possibleBooks.size(); i++) {
-				String title = possibleBooks.get(i).getBook().getBook().getTitle();
-				String author = possibleBooks.get(i).getBook().getBook().getAuthor();
-
-				System.out.println(title + ", by " + author + ".");
-			}
-		}
-    }
 
     /**
      * Helper method to retrieve all books which have the same title the user has inputted.
