@@ -53,7 +53,19 @@ public class MyLibrary {
 			} 
 
 			else if (input.equals("rate")) {
-				mainLibrary.rate();
+				// Get all info needed from user.
+				System.out.println("Type the title of the book you would like to rate: ");
+        		String searchTitle = keyboard.nextLine();
+        		System.out.println("Type the author of the book you would like to rate: ");
+        		String searchAuthor = keyboard.nextLine();
+				System.out.println("What would you like the rating of the book to be? (1 - 5): ");
+        		int newRate = keyboard.nextInt();
+        		while (newRate < 1 || newRate > 5) {
+            		System.out.println("Please enter a valid book rating (1 - 5): ");
+            		newRate = keyboard.nextInt();
+        		}
+				mainLibrary.rate(searchTitle, searchAuthor, newRate);
+				System.out.println("The rate of " + searchTitle + " by " + searchAuthor + " has been updated!");
 			} 
 
 			else if (input.equals("getBooks")) {

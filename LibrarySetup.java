@@ -307,14 +307,8 @@ public class LibrarySetup {
     /**
      * Set/update rating of a book in the user's library.
      */
-	public void rate() {
-		// Ask user which book they would like to rate.
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("Type the title of the book you would like to rate: ");
-        String searchTitle = keyboard.nextLine();
-        System.out.println("Type the author of the book you would like to rate: ");
-        String searchAuthor = keyboard.nextLine();
-
+	public void rate(String searchTitle, String searchAuthor, int newRate) {
+        
         // Integer to keep track of if we have completed the rating process.
         int found = 0;
 
@@ -326,7 +320,6 @@ public class LibrarySetup {
             if (currentTitle.equals(searchTitle) && currentAuthor.equals(searchAuthor)) {
                 // Mark that we have found the book.
                 found = 1;
-                int newRate = getNewRate();
                 ratedList.get(i).setRate(newRate);
                 System.out.println("Rate has been updated.");
                 return;
@@ -344,7 +337,6 @@ public class LibrarySetup {
                 if (currentTitle.equals(searchTitle) && currentAuthor.equals(searchAuthor)) {
                     // Mark that we have found the book.
                     found = 1;
-                    int newRate = getNewRate();
                     BookReview newReview = new BookReview(currentBookRead, newRate);
                     ratedList.addReviewBook(newReview);
                     System.out.println("Rate has been updated.");
@@ -356,21 +348,6 @@ public class LibrarySetup {
         // If we reach this point, user did not enter a valid book in the library.
         System.out.println("The book you wish to update was not located in your library.");
 	}
-
-    /**
-     * Helper method to prompt and retrieve an updated book ranking from the user.
-     * @return the new rate of the user's book.
-     */
-    private int getNewRate() {
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("What would you like the rating of the book to be? (1 - 5): ");
-        int newRate = keyboard.nextInt();
-        while (newRate < 1 || newRate > 5) {
-            System.out.println("Please enter a valid book rating (1 - 5): ");
-            newRate = keyboard.nextInt();
-        }
-        return newRate;
-    }
 
     /**
      * Set the status of a user's book to read.
