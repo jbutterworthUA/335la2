@@ -125,20 +125,8 @@ public class LibrarySetup {
     /**
      * Search for specific book(s) using a method determined by the user.
      */
-	public void search() {
-		// Ask user how they want to search for the book.
-		Scanner keyboard = new Scanner(System.in);
-		System.out.println("How would you like to search for the book?");
-		System.out.println("Please input title, author, or rate: ");
-		String answer = keyboard.nextLine();
-		String searchMethod = answer.toLowerCase();
-
-		// If user did not enter a valid search method, continue prompting until they do so.
-		while (!isValid(searchMethod)) {
-			System.out.println("Please input a valid search method (title, author, rate): ");
-			answer = keyboard.nextLine();
-			searchMethod = answer.toLowerCase();
-		}
+	public ArrayList<BookRead> search(String searchMethod) {
+		
 
 		// If we are searching by title, call searchByTitle helper method.
 		if (searchMethod.equals("title")) {
@@ -150,6 +138,7 @@ public class LibrarySetup {
             // Retrieve all possible books.
             ArrayList<BookRead> possibleBooks = searchByTitle(searchTitle);
 
+            return possibleBooks;
             // Display books for the user.
             displayBooks(possibleBooks);
 		}
@@ -162,7 +151,7 @@ public class LibrarySetup {
 
             // Retrieve all possible books.
             ArrayList<BookRead> possibleBooks = searchByAuthor(searchAuthor);
-
+            return possibleBooks;
             // Display books for the user.
             displayBooks(possibleBooks);
 		}
@@ -173,10 +162,11 @@ public class LibrarySetup {
 
             // Retrieve all possible books.
             ArrayList<BookReview> possibleBooks = searchByRate(searchRate);
-
+            return possibleBooks;
             // Display books for the user.
             displayBooksByRate(possibleBooks);
         }
+        return null;
 	}
 
     /**

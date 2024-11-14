@@ -22,6 +22,11 @@ public class MyLibrary {
         validSortMethods.add("read");
         validSortMethods.add("unread");
 
+		ArrayList<String> validSearchMethods = new ArrayList<>();
+        validSortMethods.add("title");
+        validSortMethods.add("author");
+        validSortMethods.add("rate");
+
 		System.out.println("Welcome to your library!");
 		System.out.println("Enter a command or type 'showCommands' to print a list of possible commands.");
 		System.out.println("Commands ARE case sensitive!");
@@ -30,7 +35,36 @@ public class MyLibrary {
 			String input = keyboard.next();
 
 			if (input.equals("search")) {
-				mainLibrary.search();
+				// Ask user how they want to search for the book.
+				System.out.println("How would you like to search for the book?");
+				System.out.println("Please input title, author, or rate: ");
+				String answer = keyboard.nextLine();
+				String searchMethod = answer.toLowerCase();
+
+				// If user did not enter a valid search method, continue prompting until they do so.
+				while (!validSearchMethods.contains(searchMethod)) {
+					System.out.println("Please input a valid search method (title, author, rate): ");
+					answer = keyboard.nextLine();
+					searchMethod = answer.toLowerCase();
+				}
+				
+				if (searchMethod.equals("title")) {
+					ArrayList<BookRead> possibleBooks = mainLibrary.search(searchMethod);
+					displayBooks(possibleBooks);
+					
+				}
+
+				if (searchMethod.equals("author")) {
+					ArrayList<BookRead> possibleBooks = mainLibrary.search(searchMethod);
+					displayBooks(possibleBooks);
+				}
+
+				if (searchMethod.equals("rate")) {
+					ArrayList<BookReview> possibleBooks = mainLibrary.search(searchMethod);
+				}
+
+
+				
 			} 
 
 			else if (input.equals("addBook")) {
@@ -130,5 +164,45 @@ public class MyLibrary {
 			System.out.println("Enter next command or type 'showCommands' to print a list of possible commands.");
 		}
 	}
+
+	/**
+     * Helper method to display a list of books to the user.
+     * @param possibleBooks. ArrayList of BookRead objects we wish to display.
+     */
+    private static void displayBooks(ArrayList<BookRead> possibleBooks) {
+        // Display all books which the user may have been searching for.
+		// If there are no possible books, display alternate message.
+		if (possibleBooks.size() == 0) {
+			System.out.println("No books matching your search");
+		} else {
+			System.out.println("List of books matching your search: ");
+			for (int i = 0; i < possibleBooks.size(); i++) {
+				String title = possibleBooks.get(i).getBook().getTitle();
+				String author = possibleBooks.get(i).getBook().getAuthor();
+
+				System.out.println(title + ", by " + author + ".");
+			}
+		}
+    }
+    
+    /**
+     * Helper method to display a list of books to the user.
+     * @param possibleBooks. ArrayList of BookReview objects we wish to display.
+     */
+    private static void displayBooksByRate(ArrayList<BookReview> possibleBooks) {
+        // Display all books which the user may have been searching for.
+		// If there are no possible books, display alternate message.
+		if (possibleBooks.size() == 0) {
+			System.out.println("No books matching your search");
+		} else {
+			System.out.println("List of books matching your search: ");
+			for (int i = 0; i < possibleBooks.size(); i++) {
+				String title = possibleBooks.get(i).getBook().getBook().getTitle();
+				String author = possibleBooks.get(i).getBook().getBook().getAuthor();
+
+				System.out.println(title + ", by " + author + ".");
+			}
+		}
+    }
 
 }
