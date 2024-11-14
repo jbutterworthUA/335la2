@@ -5,7 +5,8 @@ import javax.swing.*;
 public class GUIView extends JFrame {
     private static LibrarySetup mainLibrary = new LibrarySetup();
 	private JPanel panel;
-	private JTextField textField;
+    private JLabel directionLabel;
+	private JTextField inputField;
 	private JTextArea textArea;
 	
 	public GUIView() {
@@ -14,12 +15,12 @@ public class GUIView extends JFrame {
 	
 	private void setUp() {
 		//setting size of frame
-		this.setSize(400,400);
+		this.setSize(800,800);
 		
 		//setting up the status label
-		textField = new JTextField("",JTextField.CENTER);
-		textField.setSize(350,100);
-		this.add(textField);
+		inputField = new JTextField("",JTextField.CENTER);
+		inputField.setSize(550,50);
+		this.add(inputField);
 		
 		//setting up the count label
 		textArea = new JTextArea(10, 10);
@@ -29,6 +30,8 @@ public class GUIView extends JFrame {
 		//adding the panel
 		panel = new JPanel();
 		this.add(panel);
+
+
 		
 		//adding a window listener for closing the app
 		this.addWindowListener(new WindowAdapter() {
@@ -43,39 +46,50 @@ public class GUIView extends JFrame {
 		//setting up the required buttons.
         JButton searchButton = new JButton("Search");
         searchButton.setActionCommand("search");
-        searchButton.addActionListener(new ButtonClickListener());
+        //searchButton.addActionListener(new ButtonClickListener());
         panel.add(searchButton);
+
         JButton addBookButton = new JButton("Add Book");
         addBookButton.setActionCommand("addBook");
-        addBookButton.addActionListener(new ButtonClickListener());
+        //addBookButton.addActionListener(new ButtonClickListener());
         panel.add(addBookButton);
+
         JButton setBookButton = new JButton("Set Book to Read");
         setBookButton.setActionCommand("set");
-        setBookButton.addActionListener(new ButtonClickListener());
+        //setBookButton.addActionListener(new ButtonClickListener());
         panel.add(setBookButton);
+
         JButton rateButton = new JButton("Rate Book");
         rateButton.setActionCommand("rate");
-        rateButton.addActionListener(new ButtonClickListener());
+        //rateButton.addActionListener(new ButtonClickListener());
         panel.add(rateButton);
+
         JButton getBooksButton = new JButton("Get Books");
         getBooksButton.setActionCommand("get");
-        getBooksButton.addActionListener(new ButtonClickListener());
+        //getBooksButton.addActionListener(new ButtonClickListener());
         panel.add(getBooksButton);
+
         JButton suggestButton = new JButton("Suggest Read");
         suggestButton.setActionCommand("suggest");
-        suggestButton.addActionListener(new ButtonClickListener());
+        //suggestButton.addActionListener(new ButtonClickListener());
         panel.add(suggestButton);
+
         JButton addBooksButton = new JButton("Add Books");
         addBooksButton.setActionCommand("addBooks");
-        addBooksButton.addActionListener(new ButtonClickListener());
+        //addBooksButton.addActionListener(new ButtonClickListener());
         panel.add(addBooksButton);
+
         JButton exitButton = new JButton("Exit");
         exitButton.setActionCommand("exit");
-        exitButton.addActionListener(new ButtonClickListener());
+        //exitButton.addActionListener(new ButtonClickListener());
         panel.add(exitButton);
+
+
+        // Add the 
 
 	}
 	
+    /** 
 	//Listener for the two buttons
 	private class ButtonClickListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
@@ -111,11 +125,11 @@ public class GUIView extends JFrame {
 
 		}
 	}
-	
+	*/
 	//main method
 	public static void main(String[] args) {
 		GUIView view = new GUIView();
-		//view.start();
+		view.start();
 		view.setVisible(true);
 	}
 }
