@@ -49,18 +49,24 @@ public class MyLibrary {
 				}
 				
 				if (searchMethod.equals("title")) {
-					ArrayList<BookRead> possibleBooks = mainLibrary.search(searchMethod);
+					System.out.println("Enter the " + searchMethod + " of the book you are looking for.");
+					String searchKeyword = keyboard.nextLine();
+					ArrayList<BookRead> possibleBooks = mainLibrary.search(searchMethod, searchKeyword, 0);
 					displayBooks(possibleBooks);
 					
 				}
 
 				if (searchMethod.equals("author")) {
-					ArrayList<BookRead> possibleBooks = mainLibrary.search(searchMethod);
+					System.out.println("Enter the " + searchMethod + " of the book you are looking for.");
+					String searchKeyword = keyboard.nextLine();
+					ArrayList<BookRead> possibleBooks = mainLibrary.search(searchMethod, searchKeyword, 0);
 					displayBooks(possibleBooks);
 				}
 
 				if (searchMethod.equals("rate")) {
-					ArrayList<BookReview> possibleBooks = mainLibrary.search(searchMethod);
+					System.out.println("Enter the " + searchMethod + " of the book you are looking for.");
+					int searchRate = keyboard.nextInt();
+					ArrayList<BookRead> possibleBooks = mainLibrary.search(searchMethod, "", searchRate);
 				}
 
 

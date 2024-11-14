@@ -125,18 +125,13 @@ public class LibrarySetup {
     /**
      * Search for specific book(s) using a method determined by the user.
      */
-	public ArrayList<BookRead> search(String searchMethod) {
+	public ArrayList<BookRead> search(String searchMethod, String searchKeyword, int searchRate) {
 		
 
 		// If we are searching by title, call searchByTitle helper method.
 		if (searchMethod.equals("title")) {
-
-			// First, ask for the title of the book to search for.
-			System.out.println("Type the title of the book you are searching for: ");
-			String searchTitle = keyboard.nextLine();
-
             // Retrieve all possible books.
-            ArrayList<BookRead> possibleBooks = searchByTitle(searchTitle);
+            ArrayList<BookRead> possibleBooks = searchByTitle(searchKeyword);
 
             return possibleBooks;
             // Display books for the user.
@@ -145,22 +140,14 @@ public class LibrarySetup {
 
 		// If we are searching by author, we will iterate through masterList.
 		if (searchMethod.equals("author")) {
-			// First, ask for the title of the book to search for.
-			System.out.println("Type the author of the book you are searching for: ");
-			String searchAuthor = keyboard.nextLine();
-
             // Retrieve all possible books.
-            ArrayList<BookRead> possibleBooks = searchByAuthor(searchAuthor);
+            ArrayList<BookRead> possibleBooks = searchByAuthor(searchKeyword);
             return possibleBooks;
             // Display books for the user.
             displayBooks(possibleBooks);
 		}
 
         if (searchMethod.equals("rate")) {
-            System.out.println("Type the rate of the book you are searching for: ");
-			int searchRate = keyboard.nextInt();
-
-            // Retrieve all possible books.
             ArrayList<BookReview> possibleBooks = searchByRate(searchRate);
             return possibleBooks;
             // Display books for the user.
@@ -168,7 +155,9 @@ public class LibrarySetup {
         }
         return null;
 	}
-
+    public ArrayList<BookReview> getPossibleRatedBooks(ArrayList<BookReview> possibleBooks) {
+        return possibleBooks;
+    }
     /**
      * Helper method to display a list of books to the user.
      * @param possibleBooks. ArrayList of BookRead objects we wish to display.
