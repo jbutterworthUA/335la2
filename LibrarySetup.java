@@ -26,11 +26,7 @@ public class LibrarySetup {
     /**
      * Given a txt file from the user, add all books within that file to the masterList.
      */
-	public void addBooks() {
-		// Prompt user for name of text file.
-		Scanner keyboard = new Scanner(System.in);
-		System.out.println("Enter the name of the text file: ");
-		String fileName = keyboard.nextLine();
+	public void addBooks(String fileName) {
 		Scanner inFile = null;
 		try {
 			// Create file if possible.

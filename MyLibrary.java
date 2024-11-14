@@ -101,7 +101,11 @@ public class MyLibrary {
 			} 
 
 			else if (input.equals("addBooks")) {
-				mainLibrary.addBooks();
+				// Prompt user for name of text file.
+				System.out.println("Enter the name of the text file: ");
+				String fileName = keyboard.nextLine();
+				mainLibrary.addBooks(fileName);
+				System.out.println("The contents from " + fileName + " have been added to your library.");
 			} 
 
 			else if (input.equals("exit")) {
