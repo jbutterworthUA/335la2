@@ -43,7 +43,13 @@ public class MyLibrary {
 			} 
 
 			else if (input.equals("setToRead")) {
-				mainLibrary.setToRead();
+				// Ask the user which book they want to mark as read.
+				System.out.println("Enter the title of the book you want to mark as read: ");
+				String title = keyboard.nextLine();
+				System.out.println("Enter the author of the book you want to mark as read: ");
+				String author = keyboard.nextLine();
+				mainLibrary.setToRead(title, author);
+				System.out.println(title + " by " + author + " has been marked as read!");
 			} 
 
 			else if (input.equals("rate")) {
@@ -60,7 +66,14 @@ public class MyLibrary {
             		input = keyboard.next();
             		sortMethod = input.toLowerCase();
         		}
-				mainLibrary.getBooks(sortMethod);
+				// Get the correctly sorted order of a MasterList.
+				MasterList sorted = mainLibrary.getBooks(sortMethod);
+				// Display each book to the user.
+				for (int i = 0; i < sorted.size(); i++) {
+					String currentTitle = sorted.get(i).getBook().getTitle();
+					String currentAuthor = sorted.get(i).getBook().getAuthor();
+					System.out.println(currentTitle + ", by " + currentAuthor);
+				}
 			} 
 
 			else if (input.equals("suggestRead")) {
@@ -96,7 +109,7 @@ public class MyLibrary {
 				System.out.println("showCommands");
 				System.out.println("exit");
 			}
-			
+
 			System.out.println("----------------------------------");
 			System.out.println("Enter next command or type 'showCommands' to print a list of possible commands.");
 		}

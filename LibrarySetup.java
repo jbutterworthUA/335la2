@@ -64,57 +64,31 @@ public class LibrarySetup {
      * Retrieve all books in the user's library, organized by user-determined method.
      * (Title/Author/Read Status)
      */
-	public void getBooks(String sortMethod) {
+	public MasterList getBooks(String sortMethod) {
         // Get all books sorted by title.
         if (sortMethod.equals("title")) {
             masterList.sortTitle();
-            System.out.println("Here are your library books sorted by title: ");
-            for (int i = 0; i < masterList.size(); i++) {
-                String currentTitle = masterList.get(i).getBook().getTitle();
-                String currentAuthor = masterList.get(i).getBook().getAuthor();
-                System.out.println(currentTitle + ", by " + currentAuthor);
-            }
+            return masterList;
         }
 
         // Get all books sorted by author.
         if (sortMethod.equals("author")) {
             masterList.sortAuthor();
-            // Display each book to the user.
-            System.out.println("Here are your library books sorted by author: ");
-            for (int i = 0; i < masterList.size(); i++) {
-                String currentTitle = masterList.get(i).getBook().getTitle();
-                String currentAuthor = masterList.get(i).getBook().getAuthor();
-                System.out.println(currentTitle + ", by " + currentAuthor);
-            }
+            return masterList;
         }
 
         // Get all books that have been read. (Sorted by title.)
         if (sortMethod.equals("read")) {
             masterList.sortTitle();
-            // Display each book to the user.
-            System.out.println("Here are your read library books sorted by title: ");
-            for (int i = 0; i < masterList.size(); i++) {
-                if (masterList.get(i).isRead()) {
-                    String currentTitle = masterList.get(i).getBook().getTitle();
-                    String currentAuthor = masterList.get(i).getBook().getAuthor();
-                    System.out.println(currentTitle + ", by " + currentAuthor);
-                } 
-            }
+            return masterList;
         }
 
         // Get all books that have not been read (Sorted by title.)
         if (sortMethod.equals("unread")) {
            masterList.sortTitle();
-            // Display each book to the user.
-            System.out.println("Here are your unread library books sorted by title: ");
-            for (int i = 0; i < masterList.size(); i++) {
-                if (!masterList.get(i).isRead()) {
-                    String currentTitle = masterList.get(i).getBook().getTitle();
-                    String currentAuthor = masterList.get(i).getBook().getAuthor();
-                    System.out.println(currentTitle + ", by " + currentAuthor);
-                } 
-            }
+           return masterList;
         }
+        return null;
 	}
 
 	/*
@@ -401,22 +375,13 @@ public class LibrarySetup {
     /**
      * Set the status of a user's book to read.
      */
-	public void setToRead() {
-		Scanner keyboard = new Scanner(System.in);
-		// Ask the user which book they want to mark as read.
-		System.out.println("Enter the title of the book you want to mark as read: ");
-		String readTitle = keyboard.nextLine();
-
-		System.out.println("Enter the author of the book you want to mark as read: ");
-		String authorTitle = keyboard.nextLine();
-
+	public void setToRead(String title, String author) {
 		// Find the correct book in our masterList and update its read status.
 		for (int i = 0; i < masterList.size(); i++) {
 			String currentTitle = masterList.get(i).getBook().getTitle();
 			String currentAuthor = masterList.get(i).getBook().getAuthor();
-
 			// If title and author match, set the book's status to read.
-			if (currentTitle.equals(readTitle) && currentAuthor.equals(authorTitle)) {
+			if (currentTitle.equals(title) && currentAuthor.equals(author)) {
 				masterList.get(i).setRead();
 			}
 		}
