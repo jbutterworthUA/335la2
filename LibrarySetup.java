@@ -127,11 +127,11 @@ public class LibrarySetup {
      */
 	public ArrayList<BookRead> search(String searchMethod, String searchKeyword, int searchRate) {
 		
-
+        ArrayList<BookRead> possibleBooks = new ArrayList<BookRead>();
 		// If we are searching by title, call searchByTitle helper method.
 		if (searchMethod.equals("title")) {
             // Retrieve all possible books.
-            ArrayList<BookRead> possibleBooks = searchByTitle(searchKeyword);
+            possibleBooks = searchByTitle(searchKeyword);
 
             return possibleBooks;
 		}
@@ -139,15 +139,20 @@ public class LibrarySetup {
 		// If we are searching by author, we will iterate through masterList.
 		if (searchMethod.equals("author")) {
             // Retrieve all possible books.
-            ArrayList<BookRead> possibleBooks = searchByAuthor(searchKeyword);
+            possibleBooks = searchByAuthor(searchKeyword);
             return possibleBooks;
 		}
 
         if (searchMethod.equals("rate")) {
-            ArrayList<BookReview> possibleBooks = searchByRate(searchRate);
-            
+            ArrayList<BookReview> initialList = searchByRate(searchRate);
+            possibleBooks = new ArrayList<BookRead>();
+            // Convert BookReview objects to BookRead so we can export.
+            for (int i = 0; i < initialList.size(); i++) {
+                BookRead myBook = initialList.get(i).getBook();
+                possibleBooks.add(myBook);
+            }
         }
-        return null;
+        return possibleBooks;
 	}
     public ArrayList<BookReview> getPossibleRatedBooks(ArrayList<BookReview> possibleBooks) {
         return possibleBooks;
@@ -283,7 +288,7 @@ public class LibrarySetup {
     /**
      * Set the status of a user's book to read.
      */
-	public void setToRead(String title, String author) {
+	public int setToRead(String title, String author) {
 		// Find the correct book in our masterList and update its read status.
 		for (int i = 0; i < masterList.size(); i++) {
 			String currentTitle = masterList.get(i).getBook().getTitle();
@@ -292,6 +297,8 @@ public class LibrarySetup {
 			if (currentTitle.equals(title) && currentAuthor.equals(author)) {
 				masterList.get(i).setRead();
 			}
+            return 1;
 		}
+        return 0;
 	}
 }

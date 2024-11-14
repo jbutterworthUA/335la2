@@ -23,16 +23,16 @@ public class MyLibrary {
         validSortMethods.add("unread");
 
 		ArrayList<String> validSearchMethods = new ArrayList<>();
-        validSortMethods.add("title");
-        validSortMethods.add("author");
-        validSortMethods.add("rate");
+        validSearchMethods.add("title");
+        validSearchMethods.add("author");
+        validSearchMethods.add("rate");
 
 		System.out.println("Welcome to your library!");
 		System.out.println("Enter a command or type 'showCommands' to print a list of possible commands.");
 		System.out.println("Commands ARE case sensitive!");
 
 		while (continueLoop) {
-			String input = keyboard.next();
+			String input = keyboard.nextLine();
 
 			if (input.equals("search")) {
 				// Ask user how they want to search for the book.
@@ -64,32 +64,41 @@ public class MyLibrary {
 				}
 
 				if (searchMethod.equals("rate")) {
-					System.out.println("Enter the " + searchMethod + " of the book you are looking for.");
+					System.out.println("Enter the " + searchMethod + " of the book you are looking for. (1 - 5)");
 					int searchRate = keyboard.nextInt();
+					while (searchRate < 1 || searchRate > 5) {
+						System.out.println("Enter the " + searchMethod + " of the book you are looking for. (1 - 5)");
+						searchRate = keyboard.nextInt();
+					}
 					ArrayList<BookRead> possibleBooks = mainLibrary.search(searchMethod, "", searchRate);
+					displayBooks(possibleBooks);
 				}
 
 
 				
 			} 
-
 			else if (input.equals("addBook")) {
 				// Ask user for appropriate info needed for book.
-				System.out.println("Enter the title of the book to be added: ");
+				System.out.println("Enter the title of the book to be added:");
 				String title = keyboard.nextLine();
-				System.out.println("Enter the author of the book to be added: ");
+				System.out.println("Enter the author of the book to be added:");
 				String author = keyboard.nextLine();
 				mainLibrary.addBook(title, author);
+				System.out.println(title + " by " + author + " has been added to your library.");
 			} 
-
 			else if (input.equals("setToRead")) {
 				// Ask the user which book they want to mark as read.
 				System.out.println("Enter the title of the book you want to mark as read: ");
 				String title = keyboard.nextLine();
 				System.out.println("Enter the author of the book you want to mark as read: ");
 				String author = keyboard.nextLine();
-				mainLibrary.setToRead(title, author);
-				System.out.println(title + " by " + author + " has been marked as read!");
+				int completed = mainLibrary.setToRead(title, author);
+				if (completed == 1) {
+					System.out.println(title + " by " + author + " has been marked as read!");
+				}
+				else {
+					System.out.println(title + " by " + author + " does not exist in your library.");
+				}
 			} 
 
 			else if (input.equals("rate")) {
@@ -114,8 +123,8 @@ public class MyLibrary {
         		String sortMethod = input.toLowerCase();
         		
        			while (!validSortMethods.contains(sortMethod)) {
-            		System.out.println("Please enter a valid sorting method (title, author, read, unread): ");
-            		input = keyboard.next();
+            		System.out.println("Please enter a valid sorting method (title, author, read, unread):");
+            		input = keyboard.nextLine();
             		sortMethod = input.toLowerCase();
         		}
 				// Get the correctly sorted order of a MasterList.
@@ -132,6 +141,7 @@ public class MyLibrary {
 				Book suggestion = mainLibrary.suggestRead();
 				if (suggestion == null) {
 					System.out.println("No unread books in your library!");
+					continue;
 				}
 				String title = suggestion.getTitle();
 				String author = suggestion.getAuthor();
@@ -142,7 +152,7 @@ public class MyLibrary {
 
 			else if (input.equals("addBooks")) {
 				// Prompt user for name of text file.
-				System.out.println("Enter the name of the text file: ");
+				System.out.println("Enter the name of the text file:\n");
 				String fileName = keyboard.nextLine();
 				mainLibrary.addBooks(fileName);
 				System.out.println("The contents from " + fileName + " have been added to your library.");
@@ -190,25 +200,4 @@ public class MyLibrary {
 			}
 		}
     }
-    
-    /**
-     * Helper method to display a list of books to the user.
-     * @param possibleBooks. ArrayList of BookReview objects we wish to display.
-     */
-    private static void displayBooksByRate(ArrayList<BookReview> possibleBooks) {
-        // Display all books which the user may have been searching for.
-		// If there are no possible books, display alternate message.
-		if (possibleBooks.size() == 0) {
-			System.out.println("No books matching your search");
-		} else {
-			System.out.println("List of books matching your search: ");
-			for (int i = 0; i < possibleBooks.size(); i++) {
-				String title = possibleBooks.get(i).getBook().getBook().getTitle();
-				String author = possibleBooks.get(i).getBook().getBook().getAuthor();
-
-				System.out.println(title + ", by " + author + ".");
-			}
-		}
-    }
-
 }
