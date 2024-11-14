@@ -21,11 +21,17 @@ class MasterListTest {
 	
 	@Test
 	void sizeTest() {
+		myList.addBook("The Jason Book", "Jason");
+		myList.addBook("The Dylan Book", "Dylan");
+		myList.addBook("The Dylan Book", "Dylan");
 		assertEquals(myList.size(), 2);
 	}
 	
 	@Test
 	void getTest() {
+		myList.addBook("The Jason Book", "Jason");
+		myList.addBook("The Dylan Book", "Dylan");
+		myList.addBook("The Dylan Book", "Dylan");
 		assertEquals(myList.get(0).getBook().getTitle(), "The Jason Book");
 		assertEquals(myList.get(0).getBook().getAuthor(), "Jason");
 	}

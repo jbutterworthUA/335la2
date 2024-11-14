@@ -23,11 +23,16 @@ class RatedBookListTest {
 	
 	@Test
 	void sizeTest() {
+		assertEquals(myRatedList.size(), 0);
+		myRatedList.addReviewBook(jasonBookReview);
+		myRatedList.addReviewBook(dylanBookReview);
 		assertEquals(myRatedList.size(), 2);
 	}
 	
 	@Test
 	void getTest() {
+		myRatedList.addReviewBook(jasonBookReview);
+		myRatedList.addReviewBook(dylanBookReview);
 		assertEquals(myRatedList.get(1), dylanBookReview);
 	}
 }
